@@ -1,0 +1,65 @@
+baseURL: "https://cos-research.org/"
+languageCode: "ja"
+title: "臨床組織科学研究会"
+
+# テーマは使用しない（テーマレス構築）
+
+params:
+  description: "組織科学・神経科学・複雑適応系科学の学際的知見と実務データを融合し、組織介入の理論と実証研究を推進する研究コミュニティ"
+  author: "臨床組織科学研究会"
+  email: "contact@cos-research.org"
+  fellowship_email: "fellowship@cos-research.org"
+
+  organization:
+    name_ja: "臨床組織科学研究会"
+    name_en: "Research Group for Clinical Organizational Science"
+    parent_ja: "株式会社DroR"
+    parent_en: "DroR Corporation"
+    parent_url: "https://xxxxx"
+
+  colors:
+    primary: "#1B2A4A"
+    accent: "#2A9D8F"
+    background: "#FFFFFF"
+    surface: "#F5F6F8"
+    text: "#333333"
+    text_light: "#666666"
+
+menu:
+  main:
+    - name: "研究会について"
+      url: "/about/"
+      weight: 1
+    - name: "メンバー"
+      url: "/members/"
+      weight: 2
+    - name: "研究業績"
+      url: "/publications/"
+      weight: 3
+    - name: "研究テーマ"
+      url: "/research/"
+      weight: 4
+    - name: "フェロー制度"
+      url: "/fellowship/"
+      weight: 5
+    - name: "輪読会"
+      url: "/reading-group/"
+      weight: 6
+    - name: "お問い合わせ"
+      url: "/contact/"
+      weight: 7
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
+# ビルド時の挙動
+build:
+  writeStats: false
+
+# 出力フォーマット
+outputs:
+  home: ["HTML"]
+  section: ["HTML"]
+  page: ["HTML"]

@@ -1,0 +1,18 @@
+{{ $sessions := .Site.Data.reading_group.sessions }}
+{{ if $sessions }}
+  {{ range (sort $sessions "date" "desc") }}
+    <div class="reading-session">
+      <div class="session-date">{{ .date }}</div>
+      <div class="paper-title">{{ .paper.title }}</div>
+      <div class="paper-meta">
+        {{ .paper.authors }} — <em>{{ .paper.journal }}</em> ({{ .paper.year }})
+        {{ with .paper.doi }}<br><a href="{{ . }}" target="_blank" rel="noopener">{{ . }}</a>{{ end }}
+      </div>
+      {{ with .discussion_note }}
+        <div class="discussion-note">議論のポイント：{{ . }}</div>
+      {{ end }}
+    </div>
+  {{ end }}
+{{ else }}
+  <p style="color: var(--color-text-light); font-size: 0.9rem;">開催履歴は準備中です。</p>
+{{ end }}

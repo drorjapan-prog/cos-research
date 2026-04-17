@@ -1,0 +1,49 @@
+{{ define "main" }}
+  <article class="publication-single">
+    <h1>{{ .Params.title }}</h1>
+
+    <dl class="meta-list">
+      <dt>著者</dt>
+      <dd>
+        {{ $authors := slice }}
+        {{ range .Params.authors }}
+          {{ $authors = $authors | append (printf "%s, %s" .family .given) }}
+        {{ end }}
+        {{ delimit $authors ", " ", & " }}
+      </dd>
+      {{ with .Params.journal }}
+        <dt>掲載誌</dt>
+        <dd><em>{{ . }}</em>{{ with $.Params.volume }}, {{ . }}{{ end }}{{ with $.Params.issue }}({{ . }}){{ end }}{{ with $.Params.pages }}, {{ . }}{{ end }}</dd>
+      {{ end }}
+      {{ with .Params.year }}
+        <dt>発表年</dt>
+        <dd>{{ . }}{{ if eq $.Params.status "under_review" }}（査読中）{{ else if eq $.Params.status "in_press" }}（掲載決定）{{ end }}</dd>
+      {{ end }}
+      {{ with .Params.doi }}
+        <dt>DOI</dt>
+        <dd><a href="{{ . }}" target="_blank" rel="noopener">{{ . }}</a></dd>
+      {{ end }}
+      {{ with .Params.pdf_url }}
+        <dt>PDF</dt>
+        <dd><a href="{{ . }}" target="_blank" rel="noopener">ダウンロード</a></dd>
+      {{ end }}
+      {{ with .Params.tags }}
+        <dt>キーワード</dt>
+        <dd>{{ delimit . " / " }}</dd>
+      {{ end }}
+    </dl>
+
+    {{ with .Params.abstract }}
+      <div class="abstract">
+        <h2>Abstract</h2>
+        <div>{{ . | markdownify }}</div>
+      </div>
+    {{ end }}
+
+    {{ with .Content }}
+      <div class="notes">{{ . }}</div>
+    {{ end }}
+
+    <p style="margin-top: 2rem;"><a href="/publications/">← 研究業績一覧に戻る</a></p>
+  </article>
+{{ end }}

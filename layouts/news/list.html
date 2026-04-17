@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+  <div class="news-list">
+    {{ range .Pages.ByDate.Reverse }}
+      {{ partial "news-item.html" . }}
+    {{ else }}
+      <p style="color: var(--color-text-light);">現在お知らせはありません。</p>
+    {{ end }}
+  </div>
+{{ end }}

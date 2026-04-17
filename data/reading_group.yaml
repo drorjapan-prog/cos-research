@@ -1,0 +1,24 @@
+# 輪読会の開催履歴
+# 新しいセッションを追加する場合は、以下の形式でエントリを追加してください。
+# date: "YYYY-MM-DD" の形式で記載してください。
+sessions:
+  - date: "2026-XX-XX"
+    paper:
+      title: "[論文タイトル（例：組織介入の文脈依存性に関する理論的検討）]"
+      authors: "[著者名]"
+      journal: "[ジャーナル名]"
+      year: 2024
+      doi: "https://doi.org/xxxxx"
+    discussion_note: |
+      組織介入の文脈依存性に関する理論的枠組みを検討。
+      介入効果のheterogeneityを説明する変数について議論した。
+  - date: "2026-XX-XX"
+    paper:
+      title: "[論文タイトル（例：複雑適応系における創発的秩序の形成）]"
+      authors: "[著者名]"
+      journal: "[ジャーナル名]"
+      year: 2023
+      doi: "https://doi.org/xxxxx"
+    discussion_note: |
+      複雑適応系における創発的秩序の形成プロセスについて検討。
+      組織変革のフェーズ遷移モデルとの接続を議論した。

@@ -1,0 +1,33 @@
+<article class="research-card">
+  <h3 class="card-title">{{ .Params.title_ja }}</h3>
+  {{ with .Params.description_ja }}
+    <div class="description">{{ . | markdownify }}</div>
+  {{ end }}
+  {{ with .Params.academic_context }}
+    <div class="academic-context">
+      <span class="academic-context-label">▶ 学術的位置づけ</span>
+      {{ . | markdownify }}
+    </div>
+  {{ end }}
+  {{ with .Params.disciplines }}
+    <div class="meta">分野：{{ delimit . "、" }}</div>
+  {{ end }}
+  {{ with .Params.level }}
+    <div class="meta">対象：{{ . }}</div>
+  {{ end }}
+  {{ with .Params.available_data }}
+    <div class="meta">データ：{{ . }}</div>
+  {{ end }}
+  {{ with .Params.status }}
+    <div class="meta">
+      ステータス：
+      {{ if eq . "募集中" }}
+        <span class="status">🟢 {{ . }}</span>
+      {{ else if eq . "進行中" }}
+        <span class="status">🔵 {{ . }}</span>
+      {{ else }}
+        <span class="status done">⚪ {{ . }}</span>
+      {{ end }}
+    </div>
+  {{ end }}
+</article>

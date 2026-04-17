@@ -1,0 +1,53 @@
+{{/*
+  トップページは baseof を使わない独立テンプレート。
+  ヒーローセクションを全幅で表示するため、コンテナ構造を自前で組む。
+*/}}
+{{ partial "head.html" . }}
+<body>
+  {{ partial "header.html" . }}
+
+  <!-- ヒーロー / ファーストビュー -->
+  <section class="hero">
+    <h1 class="hero-title">{{ .Site.Params.organization.name_ja }}</h1>
+    <div class="hero-title-en">{{ .Site.Params.organization.name_en }}</div>
+    <p class="hero-description">
+      組織科学・神経科学・複雑適応系科学の学際的知見と実務データを融合し、<br>
+      組織介入の理論と実証研究を推進する研究コミュニティです。
+    </p>
+  </section>
+
+  <!-- ピックアップ -->
+  <section class="pickup-section">
+    <div class="container">
+      <h2>ピックアップ</h2>
+      <div class="pickup-grid">
+        {{ partial "pickup-card.html" (dict "icon" "📄" "title" "研究業績" "description" "学術誌に掲載された論文をご覧いただけます" "url" "/publications/") }}
+        {{ partial "pickup-card.html" (dict "icon" "🎓" "title" "リサーチフェロー募集" "description" "大学院生・若手研究者を対象としたフェロー制度" "url" "/fellowship/") }}
+        {{ partial "pickup-card.html" (dict "icon" "📖" "title" "輪読会のご案内" "description" "定期開催中の輪読会への参加者を募集しています" "url" "/reading-group/") }}
+        {{ partial "pickup-card.html" (dict "icon" "🔬" "title" "研究会について" "description" "臨床組織科学の理論的枠組みと研究領域" "url" "/about/") }}
+      </div>
+    </div>
+  </section>
+
+  <!-- ニュース -->
+  <section class="news-section">
+    <div class="container">
+      <h2>お知らせ</h2>
+      {{ $news := where .Site.RegularPages "Section" "news" }}
+      {{ $news = sort $news "Date" "desc" }}
+      {{ if $news }}
+        {{ range first 5 $news }}
+          {{ partial "news-item.html" . }}
+        {{ end }}
+        {{ if gt (len $news) 5 }}
+          <div class="news-more"><a href="/news/">一覧はこちら →</a></div>
+        {{ end }}
+      {{ else }}
+        <p style="color: var(--color-text-light); font-size: 0.9rem;">現在お知らせはありません。</p>
+      {{ end }}
+    </div>
+  </section>
+
+  {{ partial "footer.html" . }}
+</body>
+</html>

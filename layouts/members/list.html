@@ -1,0 +1,31 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+
+  {{/* カテゴリ別に表示。就任者がいないカテゴリはセクションごと非表示 */}}
+  {{ $members := .Pages }}
+
+  {{ $leadership := where $members "Params.category" "leadership" }}
+  {{ if $leadership }}
+    <h2 class="member-category-title">代表・研究主幹（Leadership）</h2>
+    {{ range sort $leadership "Params.order" "asc" }}
+      {{ partial "member-card.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{ $advisory := where $members "Params.category" "advisory" }}
+  {{ if $advisory }}
+    <h2 class="member-category-title">アドバイザリーボード（Advisory Board）</h2>
+    {{ range sort $advisory "Params.order" "asc" }}
+      {{ partial "member-card.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{ $fellows := where $members "Params.category" "fellow" }}
+  {{ if $fellows }}
+    <h2 class="member-category-title">リサーチフェロー（Research Fellows）</h2>
+    {{ range sort $fellows "Params.order" "asc" }}
+      {{ partial "member-card.html" . }}
+    {{ end }}
+  {{ end }}
+{{ end }}

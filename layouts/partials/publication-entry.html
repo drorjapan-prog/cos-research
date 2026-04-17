@@ -1,0 +1,35 @@
+{{/* APA 7th 準拠の論文エントリ表示 */}}
+<div class="publication-entry" id="pub-{{ .File.BaseFileName }}">
+  {{/* 著者リスト (Family, G.) の形式 */}}
+  {{ $authors := slice }}
+  {{ range .Params.authors }}
+    {{ $authors = $authors | append (printf "%s, %s" .family .given) }}
+  {{ end }}
+  {{ delimit $authors ", " ", & " }}
+  {{ if .Params.status }}
+    {{ if eq .Params.status "under_review" }}
+      (under review).
+    {{ else if eq .Params.status "in_press" }}
+      (in press).
+    {{ else }}
+      ({{ .Params.year }}).
+    {{ end }}
+  {{ else }}
+    ({{ .Params.year }}).
+  {{ end }}
+  <a href="{{ .RelPermalink }}"><strong>{{ .Params.title }}</strong></a>.
+  <span class="journal">{{ .Params.journal }}</span>{{ with .Params.volume }}, {{ . }}{{ end }}{{ with .Params.issue }}({{ . }}){{ end }}{{ with .Params.pages }}, {{ . }}{{ end }}.
+  {{ with .Params.doi }}
+    <br><a href="{{ . }}" class="doi" target="_blank" rel="noopener">{{ . }}</a>
+  {{ end }}
+  <div class="links">
+    {{ with .Params.pdf_url }}<a href="{{ . }}" target="_blank" rel="noopener">PDF</a>{{ end }}
+    {{ if .Params.abstract }}
+      <button type="button" class="abstract-toggle" onclick="this.closest('.publication-entry').classList.toggle('open')">Abstract ▼</button>
+    {{ end }}
+    <a href="{{ .RelPermalink }}">詳細</a>
+  </div>
+  {{ with .Params.abstract }}
+    <div class="abstract-content">{{ . | markdownify }}</div>
+  {{ end }}
+</div>

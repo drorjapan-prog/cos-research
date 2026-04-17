@@ -1,0 +1,36 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  {{ with .Content }}<div class="page-intro">{{ . }}</div>{{ end }}
+
+  {{ $pubs := .Pages }}
+
+  {{/* Under Review / In Press を先に表示 */}}
+  {{ $underReview := where $pubs "Params.status" "under_review" }}
+  {{ if $underReview }}
+    <h2 class="publication-year">Under Review</h2>
+    {{ range $underReview }}
+      {{ partial "publication-entry.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{ $inPress := where $pubs "Params.status" "in_press" }}
+  {{ if $inPress }}
+    <h2 class="publication-year">In Press</h2>
+    {{ range $inPress }}
+      {{ partial "publication-entry.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{/* 出版済みは year (int) ごとに降順表示 */}}
+  {{ $published := where $pubs "Params.status" "published" }}
+  {{ range ($published.GroupByParam "year" "desc") }}
+    <h2 class="publication-year">{{ .Key }}</h2>
+    {{ range .Pages }}
+      {{ partial "publication-entry.html" . }}
+    {{ end }}
+  {{ end }}
+
+  {{ if not $pubs }}
+    <p style="color: var(--color-text-light);">現在掲載できる業績はありません。</p>
+  {{ end }}
+{{ end }}

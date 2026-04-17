@@ -1,0 +1,33 @@
+{{/*
+  Google Scholar 用 Highwire Press メタタグ
+  論文個別ページ（publications セクションの single ページ）でのみ出力
+*/}}
+{{ if and (eq .Section "publications") (eq .Kind "page") }}
+  {{ with .Params.title }}
+    <meta name="citation_title" content="{{ . }}">
+  {{ end }}
+  {{ range .Params.authors }}
+    <meta name="citation_author" content="{{ .family }}, {{ .given }}">
+  {{ end }}
+  {{ with .Params.year }}
+    <meta name="citation_publication_date" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.journal }}
+    <meta name="citation_journal_title" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.volume }}
+    <meta name="citation_volume" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.issue }}
+    <meta name="citation_issue" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.pages }}
+    <meta name="citation_firstpage" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.doi }}
+    <meta name="citation_doi" content="{{ . }}">
+  {{ end }}
+  {{ with .Params.pdf_url }}
+    <meta name="citation_pdf_url" content="{{ . }}">
+  {{ end }}
+{{ end }}
