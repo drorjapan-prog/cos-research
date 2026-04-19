@@ -22,7 +22,8 @@
   --font-body: 'Noto Sans JP', 'Source Sans 3', sans-serif;
   --font-heading: 'Noto Serif JP', 'Source Serif 4', serif;
 
-  --max-width: 900px;
+  --max-width: 1200px;   /* 900px → 1200px */
+  --max-width-reading: 760px;  /* 追加: 読み物用 */
   --spacing: 1rem;
 }
 
@@ -658,6 +659,14 @@ ul, ol {
   margin-bottom: 2rem;
 }
 
+/* 長文を読ませるページは可読幅にキープ */
+.publication-single,
+.page-intro {
+  max-width: var(--max-width-reading);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .contact-block {
   background: var(--color-surface);
   padding: 1.2rem 1.5rem;
@@ -682,6 +691,13 @@ ul, ol {
   .member-card { flex-direction: column; align-items: center; text-align: center; }
   h1 { font-size: 1.5rem; }
   h2 { font-size: 1.2rem; }
+}
+
+/* 中間サイズで pickup-grid が2列に落ちるのを3列まで許容 */
+@media (min-width: 600px) and (max-width: 900px) {
+  .pickup-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 480px) {
