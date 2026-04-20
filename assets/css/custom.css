@@ -247,6 +247,27 @@ ul, ol {
   line-height: 1.6;
 }
 
+/* SVGアイコン用の追加スタイル */
+/* assets/css/custom.css の 「ピックアップカード」セクションに追加してください */
+
+.pickup-card .icon svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-accent); /* サイトのアクセントカラー (#2A9D8F) を使用 */
+  transition: transform 0.2s ease;
+}
+
+.pickup-card:hover .icon svg {
+  transform: scale(1.1);
+}
+
+/* ダークモード対応（将来のため） */
+@media (prefers-color-scheme: dark) {
+  .pickup-card .icon svg {
+    color: var(--color-accent);
+  }
+}
+
 /* ========================================
    ニュース一覧
    ======================================== */
