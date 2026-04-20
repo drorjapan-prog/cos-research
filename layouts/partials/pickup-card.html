@@ -1,6 +1,14 @@
-{{/* 引数: dict "icon" "📄" "title" "..." "description" "..." "url" "..." */}}
-<a href="{{ .url }}" class="pickup-card">
-  <div class="icon" aria-hidden="true">{{ .icon }}</div>
+{{/* 引数: dict "icon" "svg_path" または "icon" "📄" "title" "..." "description" "..." "url" "..." */}}
+<a href="{{ .url | relURL }}" class="pickup-card">
+  <div class="icon" aria-hidden="true">
+    {{- if hasPrefix .icon "<svg" -}}
+      {{/* SVGコードの場合はそのまま出力 */}}
+      {{ .icon | safeHTML }}
+    {{- else -}}
+      {{/* 絵文字の場合はそのまま出力 */}}
+      {{ .icon }}
+    {{- end -}}
+  </div>
   <div class="card-title">{{ .title }}</div>
   <div class="card-description">{{ .description }}</div>
 </a>
