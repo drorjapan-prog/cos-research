@@ -53,4 +53,4 @@ Lewinの場の理論を複雑適応系の観点から拡張し、組織内の心
 ## 運営母体
 
 株式会社DroR（DroR Corporation）
-<https://xxxxx>
+<https://dror.co.jp/>
