@@ -15,7 +15,7 @@ description: "臨床組織科学研究会へのお問い合わせ"
 <a href="mailto:fellowship@cos-research.org">fellowship@cos-research.org</a>
 </div>
 
-## 事務局
+## 運営事務局
 
 臨床組織科学研究会 事務局
 （株式会社DroR内）
